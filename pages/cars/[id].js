@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-export default function Car() {
+export default function Car({ car }) {
   const router = useRouter();
   const { id } = router.query;
   return (
@@ -32,4 +32,8 @@ export async function getStaticPaths() {
   const paths = data.map((car) => {
     return { params: { id: car } };
   });
+  return {
+    paths,
+    fallback: false,
+  };
 }
